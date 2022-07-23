@@ -2,20 +2,21 @@ import { DayOfWeek, WeatherIcon, WeatherIcontype, WeatherResponse } from "../mod
 
 export const buttonClick = document.getElementById("button-location");
 const DateDayname = document.getElementById("date-dayname");
-const DateDate = document.getElementById("date-date");
+const DateDay = document.getElementById("date-day");
 const LocationText = document.getElementById("location-text");
 const WeatherIconPng = document.getElementById("weather-icon");
 const WeatherTemp = document.getElementById("weather-temp");
-const WeatherDescription = document.getElementById("weather-description");
+const WeatherDescription = document.getElementById("weather-desc");
 const maxTemp = document.getElementById("text-temp-max");
 const minTemp = document.getElementById("text-temp-min");
 const humidity = document.getElementById("text-humidity");
 const wind = document.getElementById("text-wind");
 const LocationInput = document.getElementById("weather-location-input");
+const Loader = document.getElementById("loader");
 
 export const updateInteface = (weather: WeatherResponse) :void => {
     if (DateDayname) DateDayname.textContent = getDayOfWeek();
-    if (DateDate) DateDate.textContent = getDate();
+    if (DateDay) DateDay.textContent = getDate();
     if (LocationText) LocationText.textContent = weather.name;
     changeWeatherIcon(weather.weather[0].icon ?? "01d");
     if (WeatherTemp) WeatherTemp.textContent = `${Math.floor(weather.main.temp)}°C`;
@@ -31,6 +32,10 @@ export function getCity(): string {
         return (LocationInput as HTMLInputElement).value;
     }
     return "";
+}
+
+export function showLoader(display: boolean): void {
+    if (Loader) Loader.style.visibility = display ? "visible" : "hidden";
 }
 
 function getDayOfWeek(): string {
