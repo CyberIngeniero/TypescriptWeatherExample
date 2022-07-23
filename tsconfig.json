@@ -3,6 +3,7 @@
         "outDir": "./dist/",
         "sourceMap": true,
         "strict": true,
+        "useUnknownInCatchVariables": false,
         "noImplicitReturns": true,
         "noImplicitAny": true,
         "module": "es6",
